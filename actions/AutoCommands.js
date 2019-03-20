@@ -62,8 +62,12 @@ module.exports.autoDBUsername = function autoDBUsername(bot, oldUser, newUser) {
 
                 guild.fetchMembers().then(userGuild => {
 
-                    //userGuild.members.get(memberSearchUpdateID).kick("testing");
-                    searchUser.dbCheck(bot, userGuild, memberSearchUpdateID, SearchUpdateUsername, authorUsername, authorID, memberSearchUpdateUNickname, false);
+                    //console.log(`ID: ${userGuild.members.get(memberSearchUpdateID)}`);
+                    if (userGuild.members.get(memberSearchUpdateID)) {
+
+                        searchUser.dbCheck(bot, userGuild, memberSearchUpdateID, SearchUpdateUsername, authorUsername, authorID, memberSearchUpdateUNickname, false);
+
+                    };
                     
                 });
             });

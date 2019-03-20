@@ -80,7 +80,7 @@ bot.on('guildMemberAdd', async memberjoin => {
 bot.on("guildMemberUpdate", function (oldMember, newMember) {
 
     return autoComm.autoDBnickname(bot, oldMember, newMember);
-
+    
 });
 
 bot.on("userUpdate", function (oldUser, newUser) {
