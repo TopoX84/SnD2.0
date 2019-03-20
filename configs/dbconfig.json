@@ -1,0 +1,7 @@
+﻿{
+  "host": "localhost",
+  "user": "root",
+  "password": "",
+  "database": "discordbotdb",
+  "charset": "latin1_swedish_ci"
+}

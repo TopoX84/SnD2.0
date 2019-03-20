@@ -1,0 +1,28 @@
+{
+  "name": "SnD-Bot",
+  "version": "1.0.0",
+  "description": "SnD-Bot impersonators using the same usernames that are on the white-list will be kicked/banned",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TopoX84/SnD-bot.git"
+  },
+  "author": "TopoX",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.1",
+    "bufferutil": "^3.0.3",
+    "discord.js": "^11.4.2",
+    "erlpack": "github:discordapp/erlpack",
+    "libsodium-wrappers": "^0.7.3",
+    "mysql": "^2.16.0",
+    "node-opus": "^0.2.9",
+    "npm": "^6.4.1",
+    "opusscript": "0.0.6",
+    "sodium": "^2.0.3",
+    "uws": "^9.14.0"
+  }
+}
