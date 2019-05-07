@@ -1,0 +1,10 @@
+﻿{
+  "kicked": 2,
+  "banned": 3,
+  "enforceRules": "Yes or No",
+  "enforceRulesRole": "Role that will endforce Rules",
+  "enforRulesServerID": "server_18_digit_ID_Here",
+  "channelRulesName": "Rules Channel name here",
+  "ServerRequirementsCheck": "server_18_digit_ID_Here",
+  "botOwnerUserID":  "add_your_18_digit_ID_here"
+}

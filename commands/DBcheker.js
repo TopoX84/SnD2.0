@@ -1,10 +1,10 @@
 ﻿const dbconn = require("../connections/dbconnection.js");
 const dbQueries = require("../dbQueries/botDbQueries.js");
+const settings = require("../configs/settings.json");
 const report = require("./reports.js");
 
-
-const toBanNumber = 3; // more or equal to this number will ban
-const toKickNumber = 2; // less or equal to this number will kick 
+const toBanNumber = settings.banned; // more or equal to this number will ban
+const toKickNumber = settings.kicked; // less or equal to this number will kick
 
 
 module.exports.dbCheck = async (bot, dbCheck, dbCheckID, dbCheckUsername, authorUsername, authorID, dbChecknickname) => {

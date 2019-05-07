@@ -24,14 +24,25 @@ Impersonators using the same usernames that are on the white-list will be kicked
     ./configs/botconfig.json
         Modify "token": "YourDiscordBotTokenHere", 
 		you can find this under  " https://discordapp.com/developers " 
-		https://discordapp.com/oauth2/authorize?client_id=CLIENTID&scope=bot&permissions=11286
+		https://discordapp.com/oauth2/authorize?client_id=CLIENTID&scope=bot&permissions=268512278
     ./configs/dbconfig.json
-        Modfy   "host": "localhost",
+        Modify  "host": "localhost",
                 "user": "root",
                 "password": ""
+	.configs/settings.json
+		Modify	"kicked": 2,   											<- number of times to get the user kicked before banning
+				"banned": 3,   											<- banning 
+				"enforceRules": "Yes or No",							<- select yes or no to enforce rules
+				"enforceRulesRole": "Role that will endforce Rules",	<- role that will be set to enforce rules
+				"enforRulesServerID": "server_18_digit_ID_Here",		<- server ID for the server to enforce rules
+				"channelRulesName": "Rules Channel name here",			<- channel name where the rules will be 
+				"ServerRequirementsCheck": "server_18_digit_ID_Here",	<- check requirements to make sure the bot works as spected
+				"botOwnerUserID":  "add_your_18_digit_ID_here"			<- owner of the bot userID
+				
+	**NOTE - on settings.json, remember to leave the quotations untouched.
  
  When you are getting your bot into the selected server make sure the premissions as shown below are selected
- ![Alt text](https://media.discordapp.net/attachments/419897259359076372/522608691938197508/permissions.PNG "Select all the permissions")
+ ![Alt text](https://cdn.discordapp.com/attachments/419897259359076372/575347526526435346/permissions.PNG "Select all the permissions")
 
 
  ### Install MySQL, Secure it and create the database, tables and rows

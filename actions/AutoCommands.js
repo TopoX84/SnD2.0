@@ -1,5 +1,6 @@
 ﻿const dbconn = require("../connections/dbconnection.js");
 const dbQueries = require("../dbQueries/botDbQueries.js");
+const settings = require("../configs/settings.json");
 const searchUser = require("./DBcheker.js");
 
 module.exports.autoDBnickname = function autoDBnickname(bot, oldMember, newMember) {
@@ -86,5 +87,29 @@ module.exports.autoDBUsername = function autoDBUsername(bot, oldUser, newUser) {
     }).catch(function (err) {
         console.log('Caught an error!', err);
     });
+};
+
+module.exports.autoRulesRoles = function autoRulesRoles(bot, memberjoin, UserID) {
+
+    let guild = bot.guilds.get(settings.enforRulesServerID);
+    let roleName = settings.enforceRulesRole;
+    let role = memberjoin.guild.roles.find(role => role.name === roleName);
+    if (guild && settings.enforRulesServerID.length == 18) {
+        if (!role) {
+
+            let reportschannel = memberjoin.guild.channels.find(channel => channel.name === "reports");
+            if (!reportschannel) return memberjoin.author.send("Couldn't find reports channel.");
+            reportschannel.send(`Please create the role **${roleName}** and give proper permissions !`)
+
+            return console.log(roleName + " does not exists!");
+
+        } else {
+
+            guild.members.get(memberjoin.user.id).send("Welcome to **" + `${bot.guilds.get(settings.enforRulesServerID).name}` + "**, you must read the rules and make sure you understand them, once done type ||`!accept`||");
+            //missing - send DM to user that recently joined with some instructions 
+            memberjoin.addRole(role);
+
+        }
+    };
 };
 

@@ -1,6 +1,6 @@
 {
   "name": "SnD-Bot",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "SnD-Bot impersonators using the same usernames that are on the white-list will be kicked/banned",
   "main": "index.js",
   "scripts": {

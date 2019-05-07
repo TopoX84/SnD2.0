@@ -1,14 +1,23 @@
 const fs = require("fs");
 const Discord = require("discord.js");
+
 const botconfig = require("./configs/botconfig.json");
+const settings = require("./configs/settings.json");
+
 const dbconn = require("./connections/dbconnection.js");
+
+const delMsgRulesChan = require("./actions/delMsgRules.js");
 const autoComm = require("./actions/AutoCommands.js");
+const ChckReq = require("./actions/CheckReq.js");
 const onJoin = require("./actions/DBcheker.js");
 
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
 
 bot.on("ready", async () => {
+
+    ChckReq.checkBotRequirements(bot);
+    
     console.log("");
     console.log(`bot username - ${bot.user.username}`);
     console.log(`bot userID   - ${bot.user.id}`);
@@ -50,18 +59,20 @@ fs.readdir("./commands/", (error, files) => {
 
 bot.on("message", async message => {
     
-        if (message.author.bot) return;
-        if (message.channel.type === "dm") return;
+    if (message.author.bot) return;
+    if (message.channel.type === "dm") return;
 
-        let prefix = botconfig.prefix;
-        let messageArray = message.content.split(" ");
-        let cmd = messageArray[0];
-        let args = messageArray.slice(1);
+    let prefix = botconfig.prefix;
+    let messageArray = message.content.split(" ");
+    let cmd = messageArray[0];
+    let args = messageArray.slice(1);
 
-        let commandfile = bot.commands.get(cmd.slice(prefix.length));
-
-        if (commandfile) commandfile.run(bot, message, args);
+    if (settings.enforceRules == "yes" || settings.enforceRules == "Yes" || settings.enforceRules == "YES") {
+        delMsgRulesChan.deleteMsgRulesChannel(bot, message, args);
+    };
     
+    let commandfile = bot.commands.get(cmd.slice(prefix.length));
+    if (commandfile) commandfile.run(bot, message, args);
 });
 
 bot.on('guildMemberAdd', async memberjoin => {
@@ -72,15 +83,24 @@ bot.on('guildMemberAdd', async memberjoin => {
     
     let authorUsername = bot.user.username; //gets bot Username;
     let authorID = bot.user.id; //gets bot ID
-
+    
+    if (settings.enforceRules == "yes" || settings.enforceRules == "Yes" || settings.enforceRules == "YES") {
+        autoComm.autoRulesRoles(bot, memberjoin, memberjoinID);
+    };
+          
     return onJoin.dbCheck(bot, memberjoin, memberjoinID, memberjoinUsername, authorUsername, authorID, memberjoinnickname, true);
-
+     
 });
 
 bot.on("guildMemberUpdate", function (oldMember, newMember) {
 
+    if (settings.enforceRules == "yes" || settings.enforceRules == "Yes" || settings.enforceRules == "YES") {
+        newMember.roles.forEach((role) => {
+            if (role.name === settings.enforceRulesRole) newMember.send("Rules violation on Server **" + bot.guilds.get(settings.enforRulesServerID).name + "**, Before you can access all the other channels, You must re-read the rules on **" + settings.channelRulesName + "** channel and within that same channel type ||`!accept`||");
+
+        });
+    };
     return autoComm.autoDBnickname(bot, oldMember, newMember);
-    
 });
 
 bot.on("userUpdate", function (oldUser, newUser) {
