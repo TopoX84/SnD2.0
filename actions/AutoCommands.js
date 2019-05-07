@@ -105,7 +105,6 @@ module.exports.autoRulesRoles = function autoRulesRoles(bot, memberjoin, UserID)
 
         } else {
 
-            guild.members.get(memberjoin.user.id).send("Welcome to **" + `${bot.guilds.get(settings.enforRulesServerID).name}` + "**, you must read the rules and make sure you understand them, once done type ||`!accept`||");
             //missing - send DM to user that recently joined with some instructions 
             memberjoin.addRole(role);
 
