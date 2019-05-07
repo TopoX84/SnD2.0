@@ -105,7 +105,8 @@ module.exports.autoRulesRoles = function autoRulesRoles(bot, memberjoin, UserID)
 
         } else {
 
-            //missing - send DM to user that recently joined with some instructions 
+            guild.members.get(memberjoin.user.id).send("Welcome to **" + bot.guilds.get(settings.enforRulesServerID).name + "**, Before you can access all the other channels, You must read the rules on **" + settings.channelRulesName + "** channel and within that same channel type ||`!accept`||");
+
             memberjoin.addRole(role);
 
         }

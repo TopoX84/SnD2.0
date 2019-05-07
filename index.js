@@ -94,12 +94,6 @@ bot.on('guildMemberAdd', async memberjoin => {
 
 bot.on("guildMemberUpdate", function (oldMember, newMember) {
 
-    if (settings.enforceRules == "yes" || settings.enforceRules == "Yes" || settings.enforceRules == "YES") {
-        newMember.roles.forEach((role) => {
-            if (role.name === settings.enforceRulesRole) newMember.send("Welcome to **" + bot.guilds.get(settings.enforRulesServerID).name + "**, Before you can access all the other channels, You must read the rules on **" + settings.channelRulesName + "** channel and within that same channel type ||`!accept`||");
-
-        });
-    };
     return autoComm.autoDBnickname(bot, oldMember, newMember);
 });
 
