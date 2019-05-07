@@ -96,7 +96,8 @@ bot.on("guildMemberUpdate", function (oldMember, newMember) {
 
     if (settings.enforceRules == "yes" || settings.enforceRules == "Yes" || settings.enforceRules == "YES") {
         newMember.roles.forEach((role) => {
-            if (role.name === settings.enforceRulesRole) guild.members.get(memberjoin.user.id).send("Welcome to **" + `${bot.guilds.get(settings.enforRulesServerID).name}` + "**, you must read the rules and make sure you understand them, once done type ||`!accept`||");
+            if (role.name === settings.enforceRulesRole) newMember.send("Welcome to **" + `${bot.guilds.get(settings.enforRulesServerID).name}` + "**, you must read the rules and make sure you understand them, once done type ||`!accept`||");
+
         });
     };
     return autoComm.autoDBnickname(bot, oldMember, newMember);
