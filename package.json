@@ -17,6 +17,7 @@
     "bufferutil": "^3.0.3",
     "discord.js": "^11.4.2",
     "erlpack": "github:discordapp/erlpack",
+    "homoglyph-search": "^1.1.1",
     "libsodium-wrappers": "^0.7.3",
     "mysql": "^2.16.0",
     "node-opus": "^0.2.9",

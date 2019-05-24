@@ -1,5 +1,5 @@
 const dbconn = require("../connections/dbconnection.js");
-const searchUser = require("./DBcheker.js");
+const searchUser = require("../actions/DBcheker.js");
 
 module.exports.run = async (bot, message, args) => {
 
@@ -29,11 +29,12 @@ module.exports.run = async (bot, message, args) => {
                             memberSearchUsername = member.user.username; // gets new member discord username
                             let Searchnickname = message.guild.members.get(memberSearchID).nickname;
 
-                            searchUser.dbCheck(bot, SearchMember, memberSearchID, memberSearchUsername, authorUsername, authorID, Searchnickname);
+                            searchUser.dbCheck(bot, SearchMember, memberSearchID, memberSearchUsername, authorUsername, authorID, Searchnickname, false);
                             console.log(`username - ${memberSearchUsername}` + ` - ${Searchnickname}` + ` - ${counter}`);
                             console.log(``);
                             counter++;
                         });
+
                         console.log(`Command was completed successfully! `);
                     });
                 });

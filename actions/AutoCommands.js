@@ -1,5 +1,6 @@
 ﻿const dbconn = require("../connections/dbconnection.js");
 const dbQueries = require("../dbQueries/botDbQueries.js");
+const homoglyphS = require("./homoglyph.js");
 const settings = require("../configs/settings.json");
 const searchUser = require("./DBcheker.js");
 
@@ -25,6 +26,7 @@ module.exports.autoDBnickname = function autoDBnickname(bot, oldMember, newMembe
         if (isInDB.length == 0) {
             
             searchUser.dbCheck(bot, newMember, memberSearchUpdateID, memberSearchUpdateUsername, authorUsername, authorID, SearchUpdatenickname, true);
+            homoglyphS.homoglyph(bot, newMember, memberSearchUpdateID, memberSearchUpdateUsername, authorUsername, authorID, SearchUpdatenickname, true);
             
         } else if (isInDB.length == 1) {
             //code to update whitelist db with new nickname
@@ -63,17 +65,16 @@ module.exports.autoDBUsername = function autoDBUsername(bot, oldUser, newUser) {
 
                 guild.fetchMembers().then(userGuild => {
 
-                    //console.log(`ID: ${userGuild.members.get(memberSearchUpdateID)}`);
                     if (userGuild.members.get(memberSearchUpdateID)) {
 
                         searchUser.dbCheck(bot, userGuild, memberSearchUpdateID, SearchUpdateUsername, authorUsername, authorID, memberSearchUpdateUNickname, false);
+                        homoglyphS.homoglyph(bot, userGuild, memberSearchUpdateID, SearchUpdateUsername, authorUsername, authorID, memberSearchUpdateUNickname, false);
 
                     };
                     
                 });
             });
 
-            //code to check whitelist db vs user that changed nickname
             
         } else if (isInDB.length == 1) {
             //code to update whitelist db with new nickname

@@ -83,13 +83,13 @@ bot.on('guildMemberAdd', async memberjoin => {
     
     let authorUsername = bot.user.username; //gets bot Username;
     let authorID = bot.user.id; //gets bot ID
+
+    onJoin.dbCheck(bot, memberjoin, memberjoinID, memberjoinUsername, authorUsername, authorID, memberjoinnickname, true);
     
     if (settings.enforceRules == "yes" || settings.enforceRules == "Yes" || settings.enforceRules == "YES") {
-        autoComm.autoRulesRoles(bot, memberjoin, memberjoinID);
+        return autoComm.autoRulesRoles(bot, memberjoin, memberjoinID);
     };
-          
-    return onJoin.dbCheck(bot, memberjoin, memberjoinID, memberjoinUsername, authorUsername, authorID, memberjoinnickname, true);
-     
+        
 });
 
 bot.on("guildMemberUpdate", function (oldMember, newMember) {
