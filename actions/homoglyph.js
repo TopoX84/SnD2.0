@@ -13,7 +13,7 @@ module.exports.homoglyph = function homoglyph(bot, dbCheck, dbCheckID, dbCheckUs
     // this checks the whitelisted DB upon user's login and kicks/bans/records items on a separate table
 
     let reasonKicked = `idential username using homoglyph, database does not match userID, kicked for impersonating`;
-    let reasonBanned = `'${toBanNumber}' times strike, user banned for impersonating a member of the whitelist`;
+    let reasonBanned = `'${toBanNumber}' times strike, user banned for impersonating a member of the whitelist by using homoglyph`;
 
     new Promise(function (resolve, reject) {
 
