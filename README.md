@@ -14,7 +14,7 @@ Impersonators using the same usernames that are on the white-list will be kicked
     nvm use v8.9.4
     
 	*download project and install npm dependencies
-	git clone https://github.com/TopoX84/SnD-bot.git SnD-bot
+	git clone https://github.com/TopoX84/SnD2.0.git SnD-bot
     cd SnD-bot
     npm update
     npm install
